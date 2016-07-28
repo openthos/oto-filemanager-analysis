@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="openos.filemanageropenos.MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--导航栏-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#c3cad4"
+            android:orientation="horizontal">
+            <include
+                layout="@layout/navigation_bar"
+                android:minHeight="@dimen/navigation"/>
+        </LinearLayout>
+
+
+
+        <!--中间的部分-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="20"
+            android:orientation="horizontal">
+            <!--left panel-->
+            <LinearLayout
+                android:layout_width="176dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="#e9edf0">
+                <include layout="@layout/left"/>
+            </LinearLayout>
+
+
+            <!--right panel -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="#FFFFFFFF"
+                android:layout_weight="3">
+                <include layout="@layout/home_view"/>
+                <LinearLayout
+                    android:id="@+id/list_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFFFF"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/line_file_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="32dp"
+                        android:background="@color/white">
+                        <Button
+                            android:id="@+id/name_btn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="名称"
+                            android:paddingLeft="8dp"
+                            android:textSize="12sp"
+                            android:textColor="#888888"
+                            android:textAlignment="viewStart"
+                            android:layout_weight="3"
+                            android:layout_marginLeft="16dp"
+                            android:background="@null"/>
+
+                        <Button
+                            android:id="@+id/time_btn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="修改日期"
+                            android:paddingLeft="8dp"
+                            android:textSize="12sp"
+                            android:textColor="#888888"
+                            android:layout_weight="1"
+                            android:textAlignment="viewStart"
+                            android:background="@null"/>
+
+                        <Button
+                            android:id="@+id/type_btn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="文件类型"
+                            android:paddingLeft="8dp"
+                            android:textSize="12sp"
+                            android:textColor="#888888"
+                            android:layout_weight="1"
+                            android:textAlignment="viewStart"
+                            android:background="@null"/>
+
+                        <Button
+                            android:id="@+id/size_btn"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:text="大小"
+                            android:paddingLeft="8dp"
+                            android:textSize="12sp"
+                            android:textColor="#888888"
+                            android:layout_weight="1"
+                            android:textAlignment="viewStart"
+                            android:background="@null"/>
+                    </LinearLayout>
+                    <ListView
+                        android:id="@+id/list_files"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="16dp"
+                        android:background="#FFFFFFFF"
+                        android:divider="@null"
+                        android:layout_weight="1">
+
+                    </ListView>
+                    <TextView
+                        android:id="@+id/empty0"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#FFFFFFFF"
+                        android:gravity="center"
+                        android:text="该文件夹为空"
+                        android:visibility="gone"
+                        android:textColor="#000000" />
+                </LinearLayout>
+                <GridView
+                    android:id="@+id/gridview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#FFFFFFFF"
+                    android:columnWidth="112dp"
+                    android:gravity="center"
+                    android:numColumns="auto_fit"
+                    android:stretchMode="columnWidth"
+                    android:layout_margin="10dp"
+                    />
+                <TextView
+                    android:id="@+id/empty1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#FFFFFFFF"
+                    android:gravity="center"
+                    android:text="该文件夹为空"
+                    android:visibility="gone"
+                    android:textColor="#000000" />
+
+
+                <GridView
+                    android:id="@+id/cloud_file_grid"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#FFFFFFFF"
+                    android:columnWidth="112dp"
+                    android:gravity="center"
+                    android:numColumns="auto_fit"
+                    android:stretchMode="columnWidth"
+                    android:layout_margin="10dp"
+                    android:verticalSpacing="10dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/vw2"
+    android:layout_width="112dp"
+    android:layout_height="128dp"
+    android:orientation="vertical"
+    android:background="@drawable/file_select_backgroud"
+    android:padding="4dp" >
+
+    <ImageView
+        android:id="@+id/gridview_fileicon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/app_name" />
+    <TextView
+        android:id="@+id/gridview_filename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ellipsize="middle"
+        android:singleLine="false"
+        android:textSize="12sp"
+        android:lines="2"
+        android:gravity="center"
+        android:textColor="#000000" />
+
+</LinearLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FileManagerOpenOS</string>
+    <string name="dialog_attribute_file_name">Name</string>
+    <string name="dialog_attribute_file_size">Size</string>
+    <string name="dialog_attribute_file_lastmodified">Last Modified</string>
+    <string name="dialog_attribute_file_path">File path</string>
+</resources>

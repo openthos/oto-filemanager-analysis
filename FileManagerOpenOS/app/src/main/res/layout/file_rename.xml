@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content">
+	<EditText
+		android:id="@+id/file_name"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/right_menu_left_margin"
+		android:textSize="@dimen/edit_font_size"
+
+		android:inputType="text"
+		android:singleLine="true"
+		android:text="" />
+</LinearLayout>
