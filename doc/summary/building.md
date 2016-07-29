@@ -1,5 +1,5 @@
 #1 程序组成部分
-FileManager应用可以分为3个部分：界面布局、本地文件管理的实现、云服务的实现，具体请参考：[代码结构及功能说明](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/FileManager%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E5%8F%8A%E8%AF%B4%E6%98%8E.docx)<br>
+FileManager应用可以分为3个部分：界面布局、本地文件管理的实现、云服务的实现，具体请参考：[代码结构及功能说明](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/FileManager%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E5%8F%8A%E8%AF%B4%E6%98%8E.docx)<br>
 主要布局文件位于FileManagerOpenOS\app\src\main\res中，内文件目录示意：<br>
 ```
 drawable  drawable-hdpi  drawable-ldpi  drawable-mdpi  drawable-xhdpi  layout  mipmap-hdpi  mipmap-mdpi  mipmap-xhdpi  mipmap-xxhdpi  mipmap-xxxhdpi  values  values-w820dp  
