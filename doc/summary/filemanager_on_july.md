@@ -58,7 +58,8 @@
 
 
 # 设计实现
-##构建 && 安装
-上传的是Android studio的工程文件，直接导入就可以运行
+##构建 && 安装 && 运行
+请查看：[building.md](https://github.com/openthos/oto-filemanager/edit/master/doc/summary/building.md)
+apk程序及压缩包地址：https://github.com/openthos/oto-filemanager/tree/master/app
 ##工程文件地址
-https://github.com/openthos/oto-filemanager
+请查看：[FileManagerOpenOS](https://github.com/openthos/oto-filemanager/tree/master/FileManagerOpenOS)
