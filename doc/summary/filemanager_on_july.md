@@ -37,7 +37,7 @@
 | x     | Seafile文件/文件夹自动同步                                                            | 功能     | 50% |
 | x     | Seafile显示文件目录列表盘                                                             | 功能     | 50% |
 | x     | Seafile增加/解除同步文件夹                                                            | 功能     | 50% |
-
+详细的功能需求请参考：[功能需求](https://github.com/openthos/oto-filemanager/tree/master/requirement)
 # 存在问题
 | 简述  | 类别  | 备注 |
 | ---- |------- |:---------|
