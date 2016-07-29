@@ -59,7 +59,7 @@
 
 # 设计实现
 ##构建 && 安装 && 运行
-请查看：[building.md](https://github.com/openthos/oto-filemanager/edit/master/doc/summary/building.md)<br>
+请查看：[building.md](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/building.md)<br>
 apk程序及压缩包地址：https://github.com/openthos/oto-filemanager/tree/master/app
 ##工程文件地址
 请查看：[FileManagerOpenOS](https://github.com/openthos/oto-filemanager/tree/master/FileManagerOpenOS)
