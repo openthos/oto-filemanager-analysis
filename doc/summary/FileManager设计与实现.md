@@ -132,7 +132,7 @@ MainActivity里面注册UsbStatesReceiver类，对USB的插入和拔出广播进
 ```
 //對文件或者文件夹的右鍵菜單，此菜单栏包括的功能：打开，打开方式，复制，剪切，重命名，删除，属性
 public class MenuDialog1 extends Dialog implements View.OnClickListener;
-	//设置右键监听事件
+//设置右键监听事件
 			convertView.setOnGenericMotionListener(new View.OnGenericMotionListener() {
 				@Override
 				public boolean onGenericMotion(View view, MotionEvent motionEvent) {
@@ -147,7 +147,7 @@ public class MenuDialog1 extends Dialog implements View.OnClickListener;
 			});
 //對空白处的右鍵菜單，此菜单栏包括的功能：新建文件夹，新建文件，刷新，粘贴，全选
     public class MenuDialog2 extends Dialog implements View.OnClickListener；
-       //对GridView的空白地方进行监听，对listview部分也是这样，sharedPreferences是判断是否是对文件进行点击，如果不是对文件点击，就显示MenuDialog2 ，否则显示MenuDialog1
+//对GridView的空白地方进行监听，对listview部分也是这样，sharedPreferences是判断是否是对文件进行点击，如果不是对文件点击，就显示MenuDialog2 ，否则显示MenuDialog1
         mGridView.setOnGenericMotionListener(new View.OnGenericMotionListener() {
             @Override
             public boolean onGenericMotion(View view, MotionEvent motionEvent) {
