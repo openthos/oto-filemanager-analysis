@@ -13,7 +13,7 @@
 　本应用属于Openthos项目的一部分，提供 Openthos 系统本地文件管理以及Seafile云存储支持。
 
 # 2、功能需求
-详细的功能需求请参考：
+详细的功能需求请参考：<br>
 [总体功能需求](https://github.com/openthos/oto-filemanager/tree/master/requirement)   
 [seafile功能说明](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/seafile%E5%8A%9F%E8%83%BD%E5%91%BD%E4%BB%A4%E5%88%97%E8%A1%A8.md)<br>
 ####完成情况如下所示：
