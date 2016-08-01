@@ -287,8 +287,34 @@ event.isCtrlPressed() && keyCode == KeyEvent.KEYCODE_X && event.getAction() == K
 event.isCtrlPressed() && keyCode == KeyEvent.KEYCODE_V && event.getAction() == KeyEvent.ACTION_DOWN//ctrl+V粘贴
 event.isCtrlPressed() && keyCode == KeyEvent.KEYCODE_D && event.getAction() == KeyEvent.ACTION_DOWN//ctrl+D删除
 ```
-##10、云服务
-###10.1、云服务文件类型
+10、##文件显示类型
+ 文件显示类型分为：列表形式、网格形式
+
+```
+// 列表模式：详细信息列表，文件列表不显示具体详细，grid列表
+	public static final int VIEWMODE_LIST_ll = 0;
+	public static final int VIEWMODE_GRID = 2;
+
+ private void showGridOrView(int view_mode) {
+        mSearchEditor.setEnabled(true);
+        mViewGridBtn.setEnabled(true);
+        mViewListBtn.setEnabled(true);
+        if (view_mode == HDBaseAdapter.VIEWMODE_GRID) {
+            mHomeView.setVisibility(View.GONE);
+            mListViewLine.setVisibility(View.GONE);
+            mGridView.setVisibility(View.VISIBLE);
+            mEmptyView02.setVisibility(View.VISIBLE);
+            mCloudGridView.setVisibility(View.GONE);
+        } else {
+            mHomeView.setVisibility(View.GONE);
+            mListViewLine.setVisibility(View.VISIBLE);
+            mGridView.setVisibility(View.GONE);
+        }
+    }
+```
+
+##11、云服务
+###11.1、云服务文件类型
 对应网络文件的三个状态，分别是已同步，没有同步，和加号（也就是添加本地同步文件）
 
 ```
@@ -307,7 +333,7 @@ initCloudFile()函数里面获取并且显示文件，调用工程师的list命�
 对未同步的文件夹：
 下载并同步：MenuDialog4 类，onClick函数里面case R.id.download: 处调用命令下载并同步
 ```
-###10.2、选择文件路径
+###12.2、选择文件路径
 文件夹路径选择器：
     public class DialogPathSelector extends Dialog；
 
