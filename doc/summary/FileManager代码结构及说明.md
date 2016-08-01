@@ -1,7 +1,7 @@
 #1、java文件结构及说明
-![image text](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/java.png)
+![image](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/java.png)
 #2、布局文件结构
-![image text](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/layout.png)
+![image](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/layout.png)
 #3、云服务的接口：
 ###对应网络文件的三个状态，分别是已同步，没有同步，和加号
      int STATUS_SYNCHRONIZED = 1;
