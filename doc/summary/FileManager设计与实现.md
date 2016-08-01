@@ -287,7 +287,7 @@ event.isCtrlPressed() && keyCode == KeyEvent.KEYCODE_X && event.getAction() == K
 event.isCtrlPressed() && keyCode == KeyEvent.KEYCODE_V && event.getAction() == KeyEvent.ACTION_DOWN//ctrl+V粘贴
 event.isCtrlPressed() && keyCode == KeyEvent.KEYCODE_D && event.getAction() == KeyEvent.ACTION_DOWN//ctrl+D删除
 ```
-10、##文件显示类型
+##10、文件显示类型
  文件显示类型分为：列表形式、网格形式
 
 ```
