@@ -1,7 +1,7 @@
 #FileManager设计与实现
 
-##导航栏部分
-###前进，后退
+##1、导航栏部分
+###1.1、前进，后退
   实现是利用两个栈mbackwardfiles，mforwardfiles来存储打开的文件路径，点击前进后退按钮调用forward()， backward()函数来具体实现前进后退。
 
 ``` 
@@ -37,9 +37,9 @@ public void backward() {//后退一步
         Log.e("backword1", "" + mbackwardfiles.size());
     }
 ```
-###显示当前路径
+###1.2、显示当前路径
 mCurrentPathEdit显示当前路径，mCurrentPathFile记录当前文件夹。定义变量homePath = "/sdcard";在显示当前路径的时候，没有显示真实的路径，把"/sdcard"替换为了“OpenthOS”。
-###搜索
+###1.3、搜索
 mSearchEditor是Editor控件来获取输入的关键字，然后对mSearchEditor进行监听，调用MyTool类的findFiles()函数来实现搜索。搜索当前文件夹下，包含关键字的文件及文件夹。
 
 ```
@@ -66,9 +66,9 @@ if (keyCode == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION
                     showGridOrView(madapter.getViewMode());
                     madapter.notifyDataSetChanged();
 ```
-##左边菜单部分
+##2、左边菜单部分
 界面对应的是left.xml文件，点击改变颜色是对应的控件获取焦点是时候，改变颜色。
-##右边界面的切换
+##3、右边界面的切换
 右边显示部分的界面主要分为四种：显示磁盘界面home_view.xml,显示文件列表界面是activity_main.xml里面的listview控件，已网格显示的是activity_main.xml里面的GridView控件gridview，显示云服务界面的是activity_main.xml里面的GridView控件cloud_file_grid。通过对每个部分的显示和隐藏来对界面进行变换。
 
 ```
@@ -118,15 +118,15 @@ if (keyCode == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION
     }
 ```
 
-##USB的动态识别
-###USB显示
+##4、USB的动态识别
+###4.1、USB显示
 USB获取挂载的U盘，是调用MyTool类的 exec2（）函数运行“ df ”命令，获取当前的所有U盘的路径。USB的动态显示分为左边部分和右边部分。左边菜单部分，利用Listview显示U盘列表。右边部分利用gridview控件以硬盘形式显示USB信息。
-###USB动态识别
+###4.2、USB动态识别
 MainActivity里面注册UsbStatesReceiver类，对USB的插入和拔出广播进行监听。当UsbStatesReceiver收到U盘插入和拔出的广播后，调用sendMSG发送信息给handler对象，handler收到信息后调用initUsb()函数重新读取系统挂载的U盘信息。
-###USB的手动弹出
+###4.3、USB的手动弹出
 调用MyTool类的exec函数，运行remount命令解除对应的U盘的挂载。此过程需要root权限。
 
-##右键菜单
+##5、右键菜单
 右键菜单分为四个：对文件或文件夹的MenuDialog1，对空白部分的MenuDialog2，对云服务已同步文件夹的MenuDialog3，对云服务未同步文件夹的MenuDialog4。
 
 ```
@@ -206,7 +206,7 @@ if (f.status==STATUS_SYNCHRONIZED){
 
 ```
 
-##文件复制进度对话框
+##6、文件复制进度对话框
 文件复制进度对话框是CopyDialog类，动态显示文件复制或者剪切的百分比，对应的文件或文件夹，复制文件的总体大小。
 
 ```
@@ -231,7 +231,7 @@ if (f.status==STATUS_SYNCHRONIZED){
         sendMsg(2);//通知已经完成
     }
 ```
-##系统双击
+##7、系统双击
 用Map isCheckedMap记录文件是否被选择，mLastClickId记录最后一次点击的ID，mLastClickTime记录当前点击的系统时间，如果两次点击的ID系统，点击时间小于1.5秒并且不是多选状态，就判断是打开文件或者文件夹。
 
 ```
@@ -265,7 +265,7 @@ if (f.status==STATUS_SYNCHRONIZED){
     }
 ```
 
-##文件多选
+##8、文件多选
 文件多选是按住ctrl键，然后鼠标可以进行多选。mIsMutiSelect标记当前是否多选状态。
 
 ```
@@ -277,7 +277,7 @@ else if ((keyCode == KeyEvent.KEYCODE_CTRL_LEFT || keyCode == KeyEvent.KEYCODE_C
       mIsMutiSelect = false;
  }
 ```
-##文件热键
+##9、文件热键
 
 ```
 MainActivity里面重写public boolean dispatchKeyEvent(KeyEvent event)函数，对键盘按键进行监听：event.isCtrlPressed() && keyCode == KeyEvent.KEYCODE_A && event.getAction() == KeyEvent.ACTION_DOWN   //ctrl+A全选
@@ -287,7 +287,8 @@ event.isCtrlPressed() && keyCode == KeyEvent.KEYCODE_X && event.getAction() == K
 event.isCtrlPressed() && keyCode == KeyEvent.KEYCODE_V && event.getAction() == KeyEvent.ACTION_DOWN//ctrl+V粘贴
 event.isCtrlPressed() && keyCode == KeyEvent.KEYCODE_D && event.getAction() == KeyEvent.ACTION_DOWN//ctrl+D删除
 ```
-##云服务
+##10、云服务
+###10.1、云服务文件类型
 对应网络文件的三个状态，分别是已同步，没有同步，和加号（也就是添加本地同步文件）
 
 ```
@@ -306,7 +307,7 @@ initCloudFile()函数里面获取并且显示文件，调用工程师的list命�
 对未同步的文件夹：
 下载并同步：MenuDialog4 类，onClick函数里面case R.id.download: 处调用命令下载并同步
 ```
-###选择文件路径
+###10.2、选择文件路径
 文件夹路径选择器：
     public class DialogPathSelector extends Dialog；
 
