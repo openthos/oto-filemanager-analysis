@@ -2,17 +2,17 @@
 
 内容：
 
-* 项目简介
-* 功能需求
-* 存在问题
-* 项目进展
-* 设计实现
+* 1、项目简介
+* 2、功能需求
+* 3、存在问题
+* 4、项目进展
+* 5、设计实现
 
 
-# 项目简介
-　本应用属于openthos项目的一部分，提供 Openthos 系统本地文件管理以及Seafile云存储支持。
+# 1、项目简介
+　本应用属于openthos项目的一部分，提供 Openthos 系统本地文件管理以及Seafile云存储支持。
 
-# 功能需求
+# 2、功能需求
 | 完成     | 描述     | 模块     | 完成度 |
 | ---- |-------    |:---------|:---------| 
 | √     | FileManager顶部导航栏    | 界面     | 100% |
@@ -39,7 +39,7 @@
 | x     | Seafile显示文件目录列表盘                                                             | 功能     |  50% |
 | x     | Seafile增加/解除同步文件夹                                                            | 功能     |  50% |
 详细的功能需求请参考：[功能需求](https://github.com/openthos/oto-filemanager/tree/master/requirement)
-# 存在问题
+# 3、存在问题
 | 简述  | 类别  | 备注 |
 | ---- |------- |:---------|
 | U盘识别                        | 功能 |系统对部分U盘识别有问题 |
@@ -48,7 +48,7 @@
 | Seafile显示文件目录列表        | 功能 |工程师未提供接口        | 
 | Seafile增加/解除同步文件夹     | 功能 |工程师未提供接口        |
  
-# 项目进展
+# 4、项目进展
 
 | 开始时间  | 结束时间  | 内容 | 人员|
 | ---- |------- |-------|:---------|
@@ -59,13 +59,18 @@
 |2016.07.23|	2016.07.24|	调研分析总结terminal版Seafile客户端的CLI接口，并发送给王琪工程师|朱思敏和孙智鹏|
 |2016.07.25|	2016.07.30|	完成Seafile云存储基本功能，整合程序进Openthos系统，编写开发文档|朱思敏和孙智鹏|
 
-#FileManager设计与实现
-##应用设计与实现
+#5、设计与实现
+##5.1主要结构
+代码的主要结构如图所示：<br>
+![image](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84.md)
+##5.2应用设计与实现
 请查看：[FileManager设计与实现.md](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/FileManager%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.md)
-##代码结构说明
+##5.3代码结构说明
 请查看：[FileManager代码结构及说明.md](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/FileManager%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E5%8F%8A%E8%AF%B4%E6%98%8E.md)
-##构建 && 安装 && 运行
+##5.4流程图
+FileManager的几个基本功能流程图如下所示：[流程图.md](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/%E6%B5%81%E7%A8%8B%E5%9B%BE.md)
+##5.5构建 && 安装 && 运行
 请查看：[building.md](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/building.md)<br>
 apk程序及压缩包地址：https://github.com/openthos/oto-filemanager/tree/master/app
-##工程文件地址
+##5.6工程文件地址
 请查看：[FileManagerOpenOS](https://github.com/openthos/oto-filemanager/tree/master/FileManagerOpenOS)
