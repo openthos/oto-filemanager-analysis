@@ -333,7 +333,7 @@ initCloudFile()函数里面获取并且显示文件，调用工程师的list命�
 对未同步的文件夹：
 下载并同步：MenuDialog4 类，onClick函数里面case R.id.download: 处调用命令下载并同步
 ```
-###12.2、选择文件路径
+###11.2、选择文件路径
 文件夹路径选择器：
     public class DialogPathSelector extends Dialog；
 
