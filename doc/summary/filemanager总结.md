@@ -13,6 +13,10 @@
 　本应用属于openthos项目的一部分，提供 Openthos 系统本地文件管理以及Seafile云存储支持。
 
 # 2、功能需求
+####详细的功能需求请参考：
+[功能需求](https://github.com/openthos/oto-filemanager/tree/master/requirement)
+[seafile功能说明](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/seafile%E5%8A%9F%E8%83%BD%E5%91%BD%E4%BB%A4%E5%88%97%E8%A1%A8.md)
+####完成情况如下所示：
 | 完成     | 描述     | 模块     | 完成度 |
 | ---- |-------    |:---------|:---------| 
 | √     | FileManager顶部导航栏    | 界面     | 100% |
@@ -38,7 +42,7 @@
 | x     | Seafile文件/文件夹自动同步                                                            | 功能     |  50% |
 | x     | Seafile显示文件目录列表盘                                                             | 功能     |  50% |
 | x     | Seafile增加/解除同步文件夹                                                            | 功能     |  50% |
-详细的功能需求请参考：[功能需求](https://github.com/openthos/oto-filemanager/tree/master/requirement)
+
 # 3、存在问题
 | 简述  | 类别  | 备注 |
 | ---- |------- |:---------|
