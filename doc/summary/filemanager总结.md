@@ -32,16 +32,18 @@
 | √     | 文件多选（按住ctrl键进行多选）                                                        | 功能     | 100% |
 | √     | 热键功能支持：Ctrl+C、Ctrl+V、Ctrl+A、Ctrl+X、Ctrl+D                                  | 功能     | 100% |
 | √     | U盘动态识别，手动弹出U盘                                                              | 功能     | 100% |
-| x     | 文件拖拽                                                                              | 功能     | 0% |
-| x     | 文件框选                                                                              | 功能     | 0% |
-| x     | Seafile文件/文件夹自动同步                                                            | 功能     | 50% |
-| x     | Seafile显示文件目录列表盘                                                             | 功能     | 50% |
-| x     | Seafile增加/解除同步文件夹                                                            | 功能     | 50% |
+| x     | 文件拖拽                                                                              | 功能     |   0% |
+| x     | 文件框选                                                                              | 功能     |   0% |
+| x     | 网上邻居                                                                              | 功能     |   0% |
+| x     | Seafile文件/文件夹自动同步                                                            | 功能     |  50% |
+| x     | Seafile显示文件目录列表盘                                                             | 功能     |  50% |
+| x     | Seafile增加/解除同步文件夹                                                            | 功能     |  50% |
 详细的功能需求请参考：[功能需求](https://github.com/openthos/oto-filemanager/tree/master/requirement)
 # 存在问题
 | 简述  | 类别  | 备注 |
 | ---- |------- |:---------|
 | U盘识别                        | 功能 |系统对部分U盘识别有问题 |
+| 网上邻居                       | 功能 |后期需要做的            |
 | Seafile文件/文件夹自动同步     | 功能 |工程师未提供接口        |  
 | Seafile显示文件目录列表        | 功能 |工程师未提供接口        | 
 | Seafile增加/解除同步文件夹     | 功能 |工程师未提供接口        |
@@ -57,8 +59,11 @@
 |2016.07.23|	2016.07.24|	调研分析总结terminal版Seafile客户端的CLI接口，并发送给王琪工程师|朱思敏和孙智鹏|
 |2016.07.25|	2016.07.30|	完成Seafile云存储基本功能，整合程序进Openthos系统，编写开发文档|朱思敏和孙智鹏|
 
-
-# 设计实现
+#FileManager设计与实现
+##应用设计与实现
+请查看：[FileManager设计与实现.md](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/FileManager%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.md)
+##代码结构说明
+请查看：[FileManager代码结构及说明.md](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/FileManager%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E5%8F%8A%E8%AF%B4%E6%98%8E.md)
 ##构建 && 安装 && 运行
 请查看：[building.md](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/building.md)<br>
 apk程序及压缩包地址：https://github.com/openthos/oto-filemanager/tree/master/app
