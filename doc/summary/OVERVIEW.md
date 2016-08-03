@@ -68,7 +68,7 @@
 代码的主要结构如图所示：[主要结构](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84.md)
 ##5.2应用设计与实现
 请查看：[FileManager设计与实现.md](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/FileManager%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.md)
-##5.3代码结构说明
+##5.3代码结构及说明
 请查看：[FileManager代码结构及说明.md](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/FileManager%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E5%8F%8A%E8%AF%B4%E6%98%8E.md)
 ##5.4流程图
 FileManager的几个基本功能流程图如下所示：[流程图.md](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/%E6%B5%81%E7%A8%8B%E5%9B%BE.md)
