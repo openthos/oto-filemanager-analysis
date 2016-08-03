@@ -1,5 +1,5 @@
 #1 程序组成部分
-FileManager应用可以分为3个部分：界面布局、本地文件管理的实现、云服务的实现，具体请参考：[代码结构及功能说明](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/FileManager%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E5%8F%8A%E8%AF%B4%E6%98%8E.docx)<br>
+FileManager应用可以分为3个部分：界面布局、本地文件管理的实现、云服务的实现，具体请参考：[代码结构及功能说明](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/FileManager%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E5%8F%8A%E8%AF%B4%E6%98%8E.md)<br>
 主要布局文件位于FileManagerOpenOS\app\src\main\res中，内文件目录示意：<br>
 ```
 drawable  drawable-hdpi  drawable-ldpi  drawable-mdpi  drawable-xhdpi  layout  mipmap-hdpi  mipmap-mdpi  mipmap-xhdpi  mipmap-xxhdpi  mipmap-xxxhdpi  values  values-w820dp  
@@ -28,5 +28,5 @@ Dialog  FileCtrol  cloudservice  tools  usb  MainActivity.java
 ##2.2 Android Studio导入该项目
 程序位于 https://github.com/openthos/oto-filemanager.git 的app分支，需要使用的代码是其中的FileManagerOpenOS，这是一个压缩包。 程序详细地址： https://github.com/openthos/oto-filemanager/tree/master/app；解压后可直接导入Android Studio。
 #3 运行
-1、直接安装运行https://github.com/openthos/oto-filemanager/tree/master/app 下面的OpenThos_FileManager.apk文件<br>
-2、也可下载https://github.com/openthos/oto-filemanager 下面的FileManagerOpenOS,然后导入Android Studio后运行
+1、直接安装运行 https://github.com/openthos/oto-filemanager/tree/master/app 下面的OpenThos_FileManager.apk文件<br>
+2、也可下载 https://github.com/openthos/oto-filemanager 下面的FileManagerOpenOS,然后导入Android Studio后运行
