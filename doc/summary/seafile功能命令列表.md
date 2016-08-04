@@ -1,9 +1,18 @@
 #经过调研seafile客户端，并于王琪工程师沟通，我们确定了以下seafile功能和命令
 ##1、预计实现的功能：<br>
-对已同步的资料库的右键菜单：1、打开文件夹；2、解除同步；3、查看详情<br>
-对未同步的资料库的右键菜单：1、下载（自动绑定本地文件夹）；2、到网上去查看（在浏览器打开网址）；3、查看详情<br>
-加号：1、添加同步文件夹（在服务器端创建一个新的资料库，并绑定本地文件夹）<br>
-网络云盘信息：获取网络云盘总容量和已使用空间。
+
+```
+①、对已同步的资料库的右键菜单：
+1、打开文件夹；
+2、解除同步；
+3、查看详情
+②、对未同步的资料库的右键菜单：
+1、下载（自动绑定本地文件夹）；
+2、到网上去查看（在浏览器打开网址）；
+3、查看详情
+③、加号：添加同步文件夹（在服务器端创建一个新的资料库，并绑定本地文件夹）
+④、网络云盘信息：获取网络云盘总容量和已使用空间。
+```
 ##2、预计需要的命令
 ###Seafile命令(均已测试)：（网址：https://seacloud.cc/group/3/wiki/seafile-cli-manual）
 
@@ -31,3 +40,21 @@ seaf-cli desync -d /home/zhu/wang/
 ###Seafile命令行里面缺少的命令
 1、获取账号云盘总容量和已使用容量<br>
 2、获取远程没有同步资料库的信息，如大小等等。
+###Seafile命令行的所有命令
+
+```
+{init,start,stop,list,list-remote,status,download,download-by-name,sync,desync,create,config}
+    init                Initialize config directory
+    start               Start ccnet and seafile daemon
+    stop                Stop ccnet and seafile daemon
+    list                List local libraries
+    list-remote         List remote libraries
+    status              Show syncing status
+    download            Download a library from seafile server
+    download-by-name    Download a library defined by name from seafile server
+    sync                Sync a library with an existing foler
+    desync              Desync a library with seafile server
+    create              Create a library
+    config              Configure seafile client
+
+```
