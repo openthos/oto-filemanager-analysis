@@ -16,16 +16,16 @@ seaf-cli list-remote -s https://dev.openthos.org/ -u 1799858922@qq.com -p 279716
 create 创建资料库，命令例子：
 seaf-cli create -n zhangsan -s https://dev.openthos.org/ -u 1799858922@qq.com -p 279716
 
-List 获取本地已同步的文件夹，命令例子：
+list 获取本地已同步的文件夹，命令例子：
 seaf-cli list
 
-Download下载远程资料库，并且会默认的同步,命令例子：
+download下载远程资料库，并且会默认的同步,命令例子：
 seaf-cli download -l f3c0b8e3-3644-43af-afa7-4b7e63869e87 -s  https://dev.openthos.org/ -d /home/zhu/  -u 1799858922@qq.com -p 279716
 
-Sync把本地文件夹和远程资料库绑定同步,命令例子：
+sync把本地文件夹和远程资料库绑定同步,命令例子：
 seaf-cli sync -l 7fd8f246-2fa5-4868-b565-45098e7f52b4 -s  https://dev.openthos.org/ -d /home/zhu/wang/  -u 1799858922@qq.com -p 279716
 
-Desync 解除同步，命令例子：
+desync 解除同步，命令例子：
 seaf-cli desync -d /home/zhu/wang/
 ```
 ###Seafile命令行里面缺少的命令
