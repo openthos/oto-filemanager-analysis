@@ -6,6 +6,8 @@
 网络云盘信息：获取网络云盘总容量和已使用空间。
 ##2、预计需要的命令
 ###Seafile命令：（网址：https://seacloud.cc/group/3/wiki/seafile-cli-manual）
+
+```
 参数：-s 网址  -n 资料库名称  -u 用户名  -p 密码   -l 资料库id   -d 本地文件夹
 list-remote获取远程服务器的资料库列表，命令例子：
 seaf-cli list-remote -s https://dev.openthos.org/ -u 1799858922@qq.com -p 279716
@@ -19,7 +21,7 @@ Sync把本地文件夹和远程资料库绑定同步,命令例子：
 seaf-cli sync -l 7fd8f246-2fa5-4868-b565-45098e7f52b4 -s  https://dev.openthos.org/ -d /home/zhu/wang/  -u 1799858922@qq.com -p 279716
 Desync 解除同步，命令例子：
 seaf-cli desync -d /home/zhu/wang/
-
+```
 ###Seafile命令行里面缺少的命令
 1、获取账号云盘总容量和已使用容量
 2、获取远程没有同步资料库的信息，如大小等等。
