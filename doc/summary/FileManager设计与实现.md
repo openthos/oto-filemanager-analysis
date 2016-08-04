@@ -314,26 +314,109 @@ event.isCtrlPressed() && keyCode == KeyEvent.KEYCODE_D && event.getAction() == K
 ```
 
 ##11、云服务
-###11.1、云服务文件类型
 对应网络文件的三个状态，分别是已同步，没有同步，和加号（也就是添加本地同步文件）
 
 ```
 int STATUS_SYNCHRONIZED = 1;
 int STATUS_UNSYNCHRONIZED = 2;
 int STATUS_ADD = -1;
+```
 
-云盘获取网络文件列表显示：
+###11.1、云盘获取网络文件列表显示
 initCloudFile()函数里面获取并且显示文件，调用工程师的list命令，获取服务器的文件列表，每一个文件夹信息赋值给Seafile对象，每一个seafile对象分为已同步和未同步，然后加入到mCloudFiles列表中。然后让mCloudFileAdapter更新。
 初始或者网络文件列表更新的时候就调用initCloudFile()。
 
-添加同步文件夹：选择要同步的文件夹，对应的是DialogPathSelector类，onCreate函数里面调用同步命令
-
-对已同步的文件解除同步：MenuDialog3类，onClick函数里面case R.id.desync: 处调用解除同步命令
-
-对未同步的文件夹：
-下载并同步：MenuDialog4 类，onClick函数里面case R.id.download: 处调用命令下载并同步
 ```
-###11.2、选择文件路径
-文件夹路径选择器：
-    public class DialogPathSelector extends Dialog；
+    //云服务文件数据
+    private void initCloudFile() {
+        if (mCloudFiles == null) {
+            mCloudFiles = new ArrayList<SeafileInfo>();
+            mCloudFileAdapter = new CloudFileAdapter(this, mCloudFiles);
+            mCloudGridView.setAdapter(mCloudFileAdapter);
+            mCloudGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    if (mLastClickId.equals("" + i) && (Math.abs(System.currentTimeMillis() - mLastClickTime) < 1500)) {
+                        SeafileInfo mselectedFile = mCloudFileAdapter.getItem(i);
+                        view.setSelected(false);
+                        //如果同步了，双击打开同步了的文件夹
+                        if (mselectedFile.status == SeafileInfo.STATUS_SYNCHRONIZED) {
+                            mforwardfiles.clear();
+                            showGridOrView(madapter.getViewMode());
+                            open(new File(mselectedFile.path), true);
+                        } else if (mselectedFile.status == SeafileInfo.STATUS_ADD) {
+                            new DialogPathSelector(MainActivity.this).showDialog(1000, 800);
+                        }
+                    } else {
+                        view.setSelected(true);
+                        mLastClickTime = System.currentTimeMillis();
+                        mLastClickId = "" + i;
+                    }
+                }
+            });
+        } else {
+            mCloudFiles.clear();
+        }
+        //一定添加的加号，表示要添加同步文件夹
+        mCloudFiles.add(new SeafileInfo());
+
+        MyTool.exec("seaf-cli start");
+        /******
+         * 调用函数去获取文件列表详细，并保存到SeafileInfo类，加入到
+         * mCloudFiles云盘文件列表
+         * ****/
+        ArrayList<SeafileInfo> seafileList1=MyTool.exec_seafile_list("seaf-cli list-remote -s https://dev.openthos.org/ -u 1799858922@qq.com -p 279716");
+        ArrayList<SeafileInfo> seafileList2=MyTool.exec_seafile_list("seaf-cli list");
+        boolean flag = false;
+        for (int i =0; i<seafileList1.size();i++){
+            flag = true;
+            for (int j =0; j<seafileList2.size();j++){
+                if (seafileList1.get(i)==seafileList2.get(j)){
+                    mCloudFiles.add(seafileList2.get(j));
+                    flag = false;
+                }
+            }
+            if (flag)
+                mCloudFiles.add(seafileList1.get(i));
+        }
+       
+        mCloudFileAdapter.notifyDataSetChanged();//刷新
+    }
+```
+
+###11.2、添加同步文件夹
+选择要同步的文件夹，对应的是DialogPathSelector (文件夹路径选择器) 类，onCreate函数里面调用同步命令
+
+```
+//点击确定按钮后，就同步该文件夹到服务器。过程是：先远程服务器创建一个资料库，然后命令会反馈这个资料库的id，然后把本地文件夹和这个新创建的资料库绑定同步
+          ok.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                   dismiss();
+                   Toast.makeText(MainActivity.this, mPath.getText().toString(), Toast.LENGTH_SHORT).show();
+                    File file = new File(mPath.getText().toString());
+                    String id=MyTool.exec("seaf-cli create -n "+file.getName()+" -s https://dev.openthos.org/ -u 1799858922@qq.com -p 279716");
+                    MyTool.exec("seaf-cli sync -l "+id+" -s  https://dev.openthos.org/ -d "+file.getAbsolutePath()+"  -u 1799858922@qq.com -p 279716");
+                    initCloudFile();//刷新
+                }
+            });
+```
+###11.3、对已同步的文件解除同步
+MenuDialog3类，onClick函数里面case R.id.desync: 处调用解除同步命令
+
+```
+ //下载并且同步文件文件，默认路径 homePath
+ MyTool.exec("seaf-cli download -l "+mCloudFiles.get(position).id+" -s  https://dev.openthos.org/ -d "+homePath+"  -u 1799858922@qq.com -p 279716");
+ initCloudFile();//刷新
+```
+
+###11.4、对未同步的资料库
+下载并同步：MenuDialog4 类，onClick函数里面case R.id.download: 处调用命令下载并同步
+
+```
+ //下载并且同步文件文件，默认路径 homePath
+ MyTool.exec("seaf-cli download -l "+mCloudFiles.get(position).id+" -s  https://dev.openthos.org/ -d "+homePath+"  -u 1799858922@qq.com -p 279716");
+ initCloudFile();//刷新
+```
+
 
