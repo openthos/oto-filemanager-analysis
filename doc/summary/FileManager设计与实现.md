@@ -324,7 +324,18 @@ int STATUS_ADD = -1;
 
 ###11.1、云盘获取网络文件列表显示
 initCloudFile()函数里面获取并且显示文件，调用工程师的list命令，获取服务器的文件列表，每一个文件夹信息赋值给Seafile对象，每一个seafile对象分为已同步和未同步，然后加入到mCloudFiles列表中。然后让mCloudFileAdapter更新。
-初始或者网络文件列表更新的时候就调用initCloudFile()。
+初始或者网络文件列表更新的时候就调用initCloudFile()。<br>
+此处用到的命令：
+
+```
+seaf-cli init初始化配置文件
+seaf-cli start 启动seafile客户端
+seaf-cli list-remote 获取远程资料库列表
+seaf-cli list 获取本地已同步的文件夹列表
+实现过程：先获取远程资料库的列表，然后获取本地已同步文件夹列表，对比判断哪些资料库已同步，哪些未同步。然后显示不同的状态图标。
+
+```
+
 
 ```
     //云服务文件数据
@@ -333,6 +344,7 @@ initCloudFile()函数里面获取并且显示文件，调用工程师的list命�
             mCloudFiles = new ArrayList<SeafileInfo>();
             mCloudFileAdapter = new CloudFileAdapter(this, mCloudFiles);
             mCloudGridView.setAdapter(mCloudFileAdapter);
+            MyTool.exec("seaf-cli init -d "+homePath);//第一次初始化时配置
             mCloudGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -388,6 +400,13 @@ initCloudFile()函数里面获取并且显示文件，调用工程师的list命�
 选择要同步的文件夹，对应的是DialogPathSelector (文件夹路径选择器) 类，onCreate函数里面调用同步命令
 
 ```
+seaf-cli create 远程创建资料库
+seaf-cli sync 把本地文件夹和远程资料库绑定
+实现过程：选择本地要同步的文件夹后，先在远程服务器创建这个名称的资料库，然后获取反馈的资料库id，然后把本地文件夹和远程创建的资料库绑定，每次同步后，文件列表更新一次
+
+```
+
+```
 //点击确定按钮后，就同步该文件夹到服务器。过程是：先远程服务器创建一个资料库，然后命令会反馈这个资料库的id，然后把本地文件夹和这个新创建的资料库绑定同步
           ok.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -405,13 +424,24 @@ initCloudFile()函数里面获取并且显示文件，调用工程师的list命�
 MenuDialog3类，onClick函数里面case R.id.desync: 处调用解除同步命令
 
 ```
- //下载并且同步文件文件，默认路径 homePath
- MyTool.exec("seaf-cli download -l "+mCloudFiles.get(position).id+" -s  https://dev.openthos.org/ -d "+homePath+"  -u 1799858922@qq.com -p 279716");
+seaf-cli desync 解除本地文件夹和远程资料库的同步
+实现过程：调用desync 命令后，文件列表更新一次
+
+```
+
+```
+ MyTool.exec("seaf-cli desync -d "+mCloudFiles.get(position).path);
  initCloudFile();//刷新
 ```
 
 ###11.4、对未同步的资料库
 下载并同步：MenuDialog4 类，onClick函数里面case R.id.download: 处调用命令下载并同步
+
+```
+seaf-cli download 下载远程未同步的资料库
+实现过程：下载远程未同步的资料库后，系统会自动同步下载下来的文件夹，下载后资料库状态改变，文件列表更新一次
+
+```
 
 ```
  //下载并且同步文件文件，默认路径 homePath
