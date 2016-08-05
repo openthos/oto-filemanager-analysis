@@ -17,13 +17,13 @@
 ###Seafile命令(均已测试)：（网址：https://seacloud.cc/group/3/wiki/seafile-cli-manual）
 
 ```
-参数说 明：  -s 服务器地址  
+####参数说明：  -s 服务器地址  
             -n 资料库名称  
             -u 用户名  
             -p 密码   
             -l 资料库id   
             -d 本地文件夹
-命令格式及说明：
+####命令格式及说明：
 
 init   初始化seafile配置文件夹
 seaf-cli init -d /home/zhu/test
@@ -52,7 +52,7 @@ seaf-cli desync -d /home/zhu/wang/
 ##3、Seafile命令行里面缺少的命令
 1、获取账号云盘总容量和已使用容量<br>
 2、获取远程没有同步资料库的信息，如大小等等。
-##4、Seafile命令行的所有命令
+##4、Seafile命令行的所有命令及说明
 
 ```
 {init,start,stop,list,list-remote,status,download,download-by-name,sync,desync,create,config}
