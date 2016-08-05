@@ -835,6 +835,8 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
             mCloudFiles = new ArrayList<SeafileInfo>();
             mCloudFileAdapter = new CloudFileAdapter(this, mCloudFiles);
             mCloudGridView.setAdapter(mCloudFileAdapter);
+            MyTool.exec("seaf-cli init -d "+homePath);//第一次初始化时配置
+
 
             mCloudGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -860,18 +862,48 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
         } else {
             mCloudFiles.clear();
         }
+        //一定添加的加号，表示要添加同步文件夹
         mCloudFiles.add(new SeafileInfo());
+
+        MyTool.exec("seaf-cli start");
+        /******
+         * 调用函数去获取文件列表详细，并保存到SeafileInfo类，加入到
+         * mCloudFiles云盘文件列表
+         * ****/
+        ArrayList<SeafileInfo> seafileList1=MyTool.exec_seafile_list("seaf-cli list-remote -s https://dev.openthos.org/ -u 1799858922@qq.com -p 279716");
+        ArrayList<SeafileInfo> seafileList2=MyTool.exec_seafile_list("seaf-cli list");
+        boolean flag = false;
+        for (int i =0; i<seafileList1.size();i++){
+            flag = true;
+            for (int j =0; j<seafileList2.size();j++){
+                if (seafileList1.get(i)==seafileList2.get(j)){
+                    mCloudFiles.add(seafileList2.get(j));
+                    flag = false;
+                }
+            }
+            if (flag)
+                mCloudFiles.add(seafileList1.get(i));
+        }
+
+
+        /******
+         * 假数据，自己调用函数去获取文件列表详细，并保存到SeafileInfo类，加入到
+         * mCloudFiles云盘文件列表
+         * ****/
+        //已同步的文件夹
         SeafileInfo seafileInfo1 = new SeafileInfo();
         seafileInfo1.status = SeafileInfo.STATUS_SYNCHRONIZED;
         seafileInfo1.path = "/sdcard/DCIM";
         seafileInfo1.name = "DCIM";
         mCloudFiles.add(seafileInfo1);
-
+        //没有同步的文件夹
         SeafileInfo seafileInfo2 = new SeafileInfo();
         seafileInfo2.status = SeafileInfo.STATUS_UNSYNCHRONIZED;
         //seafileInfo1.path = "/storage/DCIM";
         seafileInfo2.name = "我的资料库";
         mCloudFiles.add(seafileInfo2);
+
+        //刷新
         mCloudFileAdapter.notifyDataSetChanged();
     }
 
@@ -1627,8 +1659,11 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
                     open(new File(mCloudFileAdapter.getItem(position).path), true);
                     break;
                 case R.id.desync://解除同步
-                    Log.e("desync", "1");
                     dismiss();
+                    //调用解除同步的命令
+                    //  mCloudFiles.get(position) 就是此时点击的文件
+                    MyTool.exec("seaf-cli desync -d "+mCloudFiles.get(position).path);
+                    initCloudFile();//刷新
 
                     break;
                 case R.id.detail:
@@ -1711,7 +1746,9 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
                 case R.id.download:
                     Log.e("download", "1");
                     dismiss();
-
+                    //下载并且同步文件文件，默认路径 homePath
+                    MyTool.exec("seaf-cli download -l "+mCloudFiles.get(position).id+" -s  https://dev.openthos.org/ -d "+homePath+"  -u 1799858922@qq.com -p 279716");
+                    initCloudFile();//刷新
                     break;
                 case R.id.surface_online://上網去看看
                     Log.e("surface_online", "1");
@@ -1844,6 +1881,11 @@ public class MainActivity extends Activity implements View.OnTouchListener, View
                 public void onClick(View v) {
                     dismiss();
                     Toast.makeText(MainActivity.this, mPath.getText().toString(), Toast.LENGTH_SHORT).show();
+                    //mPath.getText().toString()是获取的文件夹的路径，在这里调用命令去同步该文件夹
+                    File file = new File(mPath.getText().toString());
+                    String id=MyTool.exec("seaf-cli create -n "+file.getName()+" -s https://dev.openthos.org/ -u 1799858922@qq.com -p 279716");
+                    MyTool.exec("seaf-cli sync -l "+id+" -s  https://dev.openthos.org/ -d "+file.getAbsolutePath()+"  -u 1799858922@qq.com -p 279716");
+                    initCloudFile();//刷新
                 }
             });
             Button cancel = (Button) this.findViewById(R.id.filecancel);

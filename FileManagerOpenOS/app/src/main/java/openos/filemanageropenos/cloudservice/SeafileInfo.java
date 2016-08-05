@@ -9,6 +9,7 @@ public class SeafileInfo {
     public static final int STATUS_UNSYNCHRONIZED = 2;
     public static final int STATUS_ADD = -1;
 
+    public String id;
     public String name;
     public String time;
     public int status;

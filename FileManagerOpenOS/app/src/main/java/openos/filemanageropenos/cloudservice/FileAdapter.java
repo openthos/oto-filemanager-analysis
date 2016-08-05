@@ -15,7 +15,7 @@ import java.util.List;
 
 import openos.filemanageropenos.R;
 
-
+//路径选择器 DialogPathSelector 的 adpater
 public class FileAdapter extends BaseAdapter{
     private LayoutInflater mInflater;
     private Bitmap mIcon1;

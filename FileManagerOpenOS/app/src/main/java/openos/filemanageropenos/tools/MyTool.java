@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import openos.filemanageropenos.cloudservice.SeafileInfo;
+
 /**
  * Created by zhu on 2016/7/17.
  */
@@ -102,8 +104,51 @@ public class MyTool {
 //        }
 //        return result;
 //    }
+    public static ArrayList<SeafileInfo> exec_seafile_list(String cmd) {
+        ArrayList<SeafileInfo> result = new ArrayList<SeafileInfo>();
+        try {
+            if (cmd != null) {
+                Runtime rt = Runtime.getRuntime();
+                Process process = rt.exec("su");//Root权限   //Process process = rt.exec("sh");//模拟器测试权限
+                DataOutputStream dos = new DataOutputStream(process.getOutputStream());
+                dos.writeBytes(cmd + "\n");
+                dos.flush();
+                dos.writeBytes("exit\n");
+                dos.flush();
+                InputStream myin = process.getInputStream();
 
+                InputStreamReader inputStreamReader = new InputStreamReader(myin);
+                BufferedReader buff= new BufferedReader(inputStreamReader);
+                String line=null;
+                line = buff.readLine();//去掉第一行
+                while ((line = buff.readLine()) != null) {
+                    Log.e("exec_seafile_list-line:",line);
+                    String []strs = line.split("\\s+");
+                    SeafileInfo seafileInfo = new SeafileInfo();
+                    //seaf_cli list-remote命令时
+                    if (strs.length ==2){
+                        seafileInfo.name = strs[0];
+                        seafileInfo.id = strs[1];
+                        seafileInfo.status=SeafileInfo.STATUS_UNSYNCHRONIZED;
+                    }else if (strs.length ==3){//seaf_cli list命令时
+                        seafileInfo.name = strs[0];
+                        seafileInfo.id = strs[1];
+                        seafileInfo.path = strs[2];
+                        seafileInfo.status=SeafileInfo.STATUS_SYNCHRONIZED;
+                    }
+                }
+                buff.close();
+                inputStreamReader.close();
 
+                return result;
+            } else {
+                return result;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return result;
+        }
+    }
     public static String exec(String cmd) {
         try {
             if (cmd != null) {
@@ -133,6 +178,10 @@ public class MyTool {
             return "operater err!";
         }
     }
+
+
+
+
     /**
      * 递归查找文件
      * @param baseDirName  查找的文件夹路径
