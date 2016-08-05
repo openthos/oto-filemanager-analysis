@@ -16,15 +16,18 @@
 ##2、需要的命令
 ###Seafile命令(均已测试)：（网址：https://seacloud.cc/group/3/wiki/seafile-cli-manual）
 
+
+####参数说明<br>
 ```
-####参数说明：  -s 服务器地址  
+            -s 服务器地址  
             -n 资料库名称  
             -u 用户名  
             -p 密码   
             -l 资料库id   
             -d 本地文件夹
-####命令格式及说明：
-
+```
+####命令格式及说明<br>
+```
 init   初始化seafile配置文件夹
 seaf-cli init -d /home/zhu/test
 
