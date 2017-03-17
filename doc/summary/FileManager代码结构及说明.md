@@ -1,5 +1,5 @@
-#1、java文件结构及说明
-![image](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/java_structure1.png)<br />
+#1、java文件结构及说明<br />
+![image](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/java_structure1.png)
 ![image](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/java_structure2.png)
 
 |文件名|说明|
