@@ -1,5 +1,6 @@
 #1、java文件结构及说明
-![image](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/java_structure.png)
+![image](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/java_structure1.png)<br />
+![image](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/java_structure2.png)
 
 |文件名|说明|
 |------|----|
@@ -25,7 +26,7 @@
 |SeafileFragment.java|云服务界面|
 |SearchFragment.java|文件搜索界面|
 |SystemSpaceFragment.java|展示指定路径所有文件和文件夹的界面|
-|RecycleConentProvider.java|主|
+|RecycleConentProvider.java|回收站还原数据库，提供接口给Desktop|
 |CompressFormatType.java|枚举，包括tar,gzip,bzip2,zip,rar五大类可扩展|
 |Constants.java|常量|
 |FileInfo.java|文件和文件夹信息bean|
@@ -41,7 +42,7 @@
 |MainActivity.java|主界面|
 
 #2、布局文件结构
-![image](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/layout.png)
+![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/layout_structure.png)
 
 |文件名|说明|
 |------|----|
