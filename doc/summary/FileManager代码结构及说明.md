@@ -1,4 +1,4 @@
-#1、java文件结构及说明<br />
+# 1、java文件结构及说明<br />
 ![image](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/java_structure1.png)
 ![image](https://github.com/openthos/oto-filemanager/blob/master/doc/summary/pictures/java_structure2.png)
 
@@ -10,7 +10,7 @@
 |CompressDialog.java|文件压缩对话框|
 |CopyInfoDialog.java|文件复制信息对话框|
 |CreateFileDialog.java|文件文件对话框|
-|DiskDialog.java|主|
+|DiskDialog.java|首页磁盘的右键菜单|
 |FrameSelectView.java|框选自定义view|
 |GifView.java|动图自定义view|
 |MenuFirstDialog.java|主界面右键菜单|
@@ -41,7 +41,7 @@
 |BaseFragment.java|fragment父类|
 |MainActivity.java|主界面|
 
-#2、布局文件结构
+# 2、布局文件结构
 ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/layout_structure.png)
 
 |文件名|说明|
@@ -63,7 +63,8 @@
 |text_select_dialog.xml|未知文件选择文件类型的布局|
 |title_bar.xml|顶部导航栏的布局|
 |usb_grid.xml|插入U盘界面的布局|
-#3、云服务的接口：
+
+# 3、云服务的接口：
 ###对应网络文件的三个状态，分别是已同步，没有同步，和加号
      int STATUS_SYNCHRONIZED = 1;
      int STATUS_UNSYNCHRONIZED = 2;
