@@ -34,9 +34,43 @@
             mPathList.set(0, Constants.SD_PATH);
         }
     }
-    //地址栏按钮点击事件处理
     
+    //地址栏按钮点击事件处理,跳转到对应目录
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+            if (getVisibleFragment() != null
+                && getVisibleFragment() instanceof SystemSpaceFragment
+                && view.getTag() instanceof PathAdapter.ViewHolder) {
+                int pos = (int) ((PathAdapter.ViewHolder) view.getTag()).path.getTag();
+                if (pos == mPath.length - 1) {
+                    ((IFileInteractionListener) getVisibleFragment()).
+                        onRefreshFileList(mCurPath, getFileSortHelper()); 
+                } else {
+                    mClickPath = "";
+                    for (int j = 0; j <= pos; j++) {
+                        if ((j == 0 && mPath[0].equals(Constants.SD_PATH)) || j == pos) {
+                            mClickPath += mPath[j];
+                        } else {
+                            mClickPath += mPath[j] + Constants.SD_PATH;
+                        }
+                    }
+                    mClickPath = mClickPath.replaceAll(
+                    getResources().getString(R.string.path_sd_eng), Util.getSdDirectory());
+                    ((SystemSpaceFragment) getVisibleFragment()).
+                        mFileViewInteractionHub.openSelectFolder(mClickPath);
+                }
+            } else {
+                mAddressListView.setVisibility(View.GONE);
+                mEt_nivagation.setVisibility(View.VISIBLE);
+                mEt_nivagation.requestFocus();
+                mEt_nivagation.setSelection(mEt_nivagation.getText().length());
+            }
+        }
+        return true;
+    }    
 ```
+
 ## 搜索栏
 ```
     // 拿到搜索栏输入框的内容，然后开启子线程进行搜索
