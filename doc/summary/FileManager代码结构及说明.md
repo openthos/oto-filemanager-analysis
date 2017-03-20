@@ -65,7 +65,7 @@
 |usb_grid.xml|插入U盘界面的布局|
 
 # 3、云服务的接口：
-###对应网络文件的三个状态，分别是已同步，没有同步，和加号
+### 对应网络文件的三个状态，分别是已同步，没有同步，和加号
      int STATUS_SYNCHRONIZED = 1;
      int STATUS_UNSYNCHRONIZED = 2;
      int STATUS_ADD = -1;
