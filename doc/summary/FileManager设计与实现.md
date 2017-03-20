@@ -1,6 +1,42 @@
 ## 主界面（U盘）
 ## 左侧导航条（点击逻辑）
 ## 地址栏
+```
+    //根据当前路径展示地址栏内容
+    public void setNavigationPath(String displayPath) {
+        mEt_nivagation.setText(displayPath);
+        mPath = null;
+        mPathList.clear();
+        if (displayPath == null || displayPath.equals("")) {
+            mAddressListView.setVisibility(View.GONE);
+            mEt_nivagation.setVisibility(View.VISIBLE);
+        } else {
+            updateAddressButton(displayPath);
+            mAddressListView.setVisibility(View.VISIBLE);
+            mEt_nivagation.setVisibility(View.GONE);
+        }
+        mPathAdapter.notifyDataSetChanged();
+    }
+    
+    //更新地址栏按钮内容
+    private void updateAddressButton(String displayPath) {
+        if (displayPath.equals(Constants.SD_PATH)) {
+            mPath = new String[]{Constants.SD_PATH};
+            mPathList.add(Constants.SD_PATH);
+        } else {
+            mPath = displayPath.split(Constants.SD_PATH);
+            for (String s : mPath) {
+            mPathList.add(s);
+            }
+        }
+        if (!mPathList.get(0).equals(getString(R.string.path_sd_eng))) {
+            mPath[0] = Constants.SD_PATH;
+            mPathList.set(0, Constants.SD_PATH);
+        }
+    }
+    //地址栏按钮点击事件处理
+    
+```
 ## 搜索栏
 ```
     // 拿到搜索栏输入框的内容，然后开启子线程进行搜索
