@@ -46,8 +46,8 @@
 |FileInfo.java|文件和文件夹信息bean|
 |FileListAdapter.java|展示指定路径文件的适配器|
 |FileListItem.java|根据列表或网格模式展示文件信息|
-|FileManagerPreferenceActivity.java|云|
-|FilenameExtFilter.java|格式化路径|
+|FileManagerPreferenceActivity.java|格式化路径|
+|FilenameExtFilter.java|根据后缀名判定文件类型|
 |FileOperationHelper.java|文件操作工具类|
 |FileSortHelter.java|文件排序工具类|
 |FileViewInteractionHub.java|文件交互工具类|
