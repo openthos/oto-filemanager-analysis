@@ -3,7 +3,8 @@
 ## 地址栏
 ## 搜索栏
 ```
-private void excuSearch(TextView input) {
+    // 拿到搜索栏输入框的内容，然后开启子线程进行搜索
+    private void excuSearch(TextView input) {
         progressDialog.show();
         mInputText = input.getText().toString().trim();
         if (mFileList != null && mFileList.size() > 0) {
@@ -17,7 +18,8 @@ private void excuSearch(TextView input) {
         }.start();
     }
     
-        public void startSearch(String text_search) {
+    // 拿到搜索完成后的文件集合，回到主线程来更新界面
+    public void startSearch(String text_search) {
         File curFile = new File(mCurPath);
         if (curFile.exists() && curFile.isDirectory()) {
             final File[] currentFiles = curFile.listFiles();
@@ -38,7 +40,8 @@ private void excuSearch(TextView input) {
         }
     }
 
-    private void getFiles(String text_search, File[] files) {
+    // 递归遍历当前路径下所有的文件和文件夹，将匹配到的文件或文件夹添加到文件集合中
+    private void getFiles(String text_search, File[] files) {
         for (int i = 0; i < files.length; i++) {
             File file = files[i];
             String fileName = file.getName();
