@@ -2,7 +2,7 @@
 ## 左侧导航条（点击逻辑）
 ## 地址栏
 ```
-    //根据当前路径展示地址栏内容
+    //根据当前路径展示地址栏内容，按钮或是输入框
     public void setNavigationPath(String displayPath) {
         mEt_nivagation.setText(displayPath);
         mPath = null;
@@ -18,7 +18,7 @@
         mPathAdapter.notifyDataSetChanged();
     }
     
-    //更新地址栏按钮内容
+    //更新地址栏按钮内容，切割并格式化路径存入按钮内容集合
     private void updateAddressButton(String displayPath) {
         if (displayPath.equals(Constants.SD_PATH)) {
             mPath = new String[]{Constants.SD_PATH};
@@ -35,7 +35,7 @@
         }
     }
     
-    //地址栏按钮点击事件处理,跳转到对应目录
+    //地址栏点击事件处理,点击按钮跳转到对应目录，点击空白处显示输入栏可输入路径
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
@@ -68,7 +68,16 @@
             }
         }
         return true;
-    }    
+    }
+    
+    //输入框焦点监听，失去掉点时隐藏输入框，显示按钮
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        if (!view.hasFocus()) {
+            mEt_nivagation.setVisibility(View.GONE);
+            mAddressListView.setVisibility(View.VISIBLE);
+        }
+    }
 ```
 
 ## 搜索栏
