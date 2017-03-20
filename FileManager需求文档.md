@@ -72,12 +72,13 @@
 2. 点击盘符右侧弹出按钮或右键菜单点击卸载，可以安全弹出可移动硬盘。
 
 ### 云服务
+1. 当编辑并保存云服务文件夹中的文件时，自动同步最新版本的文件至云端。
+2. 可以手动同步或解除同步
 
-1. 系统默认存在文件夹“图片”和“文档”(均可删除)。
-2. 云服务的系统默认目录为”/users/用户名/cloud”。
-3. 当编辑并保存云服务文件夹中的文件时，自动同步最新版本的文件至云端。
-4. 将文件/文件夹移入“云服务”文件夹：
+# 设计实现
+## 代码结构及说明
+代码的主要结构如图所示：[FileManager代码结构说明.md](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/FileManager%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E5%8F%8A%E8%AF%B4%E6%98%8E.md) <br />
 
-  -	该文件/文件夹进入“云同步”队列，开始上传至云端。
-  -	左侧快捷定位导航子面板中，云服务列表项的   图标在上传过程中旋转，表示正在上传的状态。
-  -	当完成上传后，该文件/文件夹图标右下角会有   图标提示，表示完成上传的状态。 
+## 功能设计与实现
+功能设计与实现：[FileManager设计与实现.md](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/FileManager%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.md) <br />
+ 
