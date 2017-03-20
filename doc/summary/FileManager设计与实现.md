@@ -1,4 +1,53 @@
 ## 主界面（U盘）
+***
+    这里主要的功能在与U盘的自动加载
+    //获取U盘的布局及监听事件
+    private View getUsbView(String[] usbData) {
+        View inflate = View.inflate(getActivity(), R.layout.usb_grid, null);
+        LinearLayout usbLayout = (LinearLayout) inflate.findViewById(R.id.usb_grid_ll);
+        ProgressBar diskResidue = (ProgressBar) inflate.findViewById(R.id.usb_grid_pb);
+        TextView usbName = (TextView) inflate.findViewById(R.id.usb_grid_name);
+        TextView totalSize = (TextView) inflate.findViewById(R.id.usb_grid_total_size);
+        TextView availSize = (TextView) inflate.findViewById(R.id.usb_grid_available_size);
+        totalSize.setText(usbData[1]);
+        availSize.setText(usbData[3]);
+        usbName.setText(Util.getUsbName(getActivity(), usbData[0]));
+        int maxOne = (int) (Double.parseDouble(usbData[1].substring(0, 3)) * 100);
+        int availOne = (int) (Double.parseDouble(usbData[3].substring(0, 3)) * 100);
+        int progressOne = maxOne - availOne >= 0 ?
+               maxOne - availOne : maxOne - (availOne / 1024);
+        diskResidue.setMax(maxOne);
+        diskResidue.setProgress(progressOne);
+        inflate.setTag(usbLayout);
+        usbLayout.setTag(usbData[0]);
+        usbLayout.setOnTouchListener(new UsbTouchListener());
+        return inflate;
+    }
+
+     //这里主要是加载U盘的个数，首先获取U盘的个数，然后获取U盘的View加到mUsbDevices这个布局容器里
+     protected void initData() {
+         setVolumSize();
+         if (usbDeviceIsAttached != null && usbDeviceIsAttached.equals("usb_device_attached")) {
+            String[] cmd = {"df"};
+            usbLists = Util.execUsb(cmd);
+            int size = usbLists.size();
+            if (size > 0) {
+                mLlMobileDevice.setVisibility(View.VISIBLE);
+                mMainActivity.mHandler.sendEmptyMessage(Constants.USB_READY);
+                mUsbDevices.removeAllViews();
+                for (int i = 0; i < usbLists.size(); i++) {
+                    mUsbDevices.addView(getUsbView(usbLists.get(i)));
+                 }
+             }
+         } else if (usbDeviceIsAttached != null
+                 && usbDeviceIsAttached.equals("usb_device_detached")) {
+            usbLists.clear();
+            mUsbDevices.removeAllViews();
+         }
+    }
+
+
+***
 ## 左侧导航条（点击逻辑）
 ## 地址栏
 ```
