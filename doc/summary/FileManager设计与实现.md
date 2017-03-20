@@ -2,6 +2,67 @@
 ## 左侧导航条（点击逻辑）
 ## 地址栏
 ## 搜索栏
+```
+private void excuSearch(TextView input) {
+        progressDialog.show();
+        mInputText = input.getText().toString().trim();
+        if (mFileList != null && mFileList.size() > 0) {
+            mFileList.clear();
+        }
+        new Thread() {
+            @Override
+            public void run() {
+                startSearch(mInputText);
+            }
+        }.start();
+    }
+    
+        public void startSearch(String text_search) {
+        File curFile = new File(mCurPath);
+        if (curFile.exists() && curFile.isDirectory()) {
+            final File[] currentFiles = curFile.listFiles();
+            if (currentFiles != null && currentFiles.length != 0) {
+                getFiles(text_search, currentFiles);
+            }
+            mMainActivity.runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    if (mFileList != null && mFileList.size() > 0) {
+                        startSearchFragment();
+                    } else {
+                        showEmptyView();
+                    }
+                }
+            });
+        }
+    }
+
+    private void getFiles(String text_search, File[] files) {
+        for (int i = 0; i < files.length; i++) {
+            File file = files[i];
+            String fileName = file.getName();
+            if (fileName.contains(text_search)) {
+                SearchInfo searchInfo = new SearchInfo();
+                searchInfo.setFileName(fileName);
+                searchInfo.setFilePath(file.getPath());
+                searchInfo.fileAbsolutePath = file.getAbsolutePath();
+                searchInfo.IsDir = file.isDirectory();
+                if (mFileList != null && mFileList.contains(fileName)
+                                      && mFileList.contains(file.getPath())) {
+                    continue;
+                } else {
+                    mFileList.add(searchInfo);
+                }
+            }
+            if (file.isDirectory()) {
+                if (file.listFiles() != null) {
+                    getFiles(text_search, file.listFiles());
+                }
+            }
+        }
+    }
+    ```
 ## 云服务
 ### 需要的命令: seaf-cli
 ### 参数说明<br>
