@@ -51,22 +51,6 @@
 ## 左侧导航条（点击逻辑）
 ## 地址栏
 ```
-    //根据当前路径展示地址栏内容，按钮或是输入框
-    public void setNavigationPath(String displayPath) {
-        mEt_nivagation.setText(displayPath);
-        mPath = null;
-        mPathList.clear();
-        if (displayPath == null || displayPath.equals("")) {
-            mAddressListView.setVisibility(View.GONE);
-            mEt_nivagation.setVisibility(View.VISIBLE);
-        } else {
-            updateAddressButton(displayPath);
-            mAddressListView.setVisibility(View.VISIBLE);
-            mEt_nivagation.setVisibility(View.GONE);
-        }
-        mPathAdapter.notifyDataSetChanged();
-    }
-    
     //更新地址栏按钮内容，切割并格式化路径存入按钮内容集合
     private void updateAddressButton(String displayPath) {
         if (displayPath.equals(Constants.SD_PATH)) {
@@ -117,15 +101,6 @@
             }
         }
         return true;
-    }
-    
-    //输入框焦点监听，失去掉点时隐藏输入框，显示按钮
-    @Override
-    public void onFocusChange(View view, boolean b) {
-        if (!view.hasFocus()) {
-            mEt_nivagation.setVisibility(View.GONE);
-            mAddressListView.setVisibility(View.VISIBLE);
-        }
     }
 ```
 
