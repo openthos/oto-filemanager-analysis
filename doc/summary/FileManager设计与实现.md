@@ -49,6 +49,29 @@
 
 ***
 ## 左侧导航条（点击逻辑）
+***
+    //左侧的导航是定死的item项，由于需要点击设置的是onTouchListener监听
+    //具体的监听实现在MainActivity的一个内部类（HomeLeftOnTouchListener）
+     private class HomeLeftOnTouchListener implements View.OnTouchListener {
+     }
+     
+     //U盘的监听与加载主要是用一个LinearLayout实现，通过添加布局来实现
+     //U盘布局
+     private View getUsbView(int position) {
+         View inflate = View.inflate(this, R.layout.usb_list, null);
+         TextView name = (TextView) inflate.findViewById(R.id.usb_list_usb_name);
+         ImageView uninstall = (ImageView) inflate.findViewById(R.id.usb_list_uninstall);
+         String usbPath = SdStorageFragment.usbLists.get(position)[0];
+         name.setText(Util.getUsbName(this, usbPath));
+         uninstall.setTag(usbPath);
+         inflate.setTag(usbPath);
+         uninstall.setOnClickListener(new UsbUninstallListener());
+         inflate.setOnTouchListener(mHomeLeftOnTouchListener);
+         inflate.setOnHoverListener(mHomeLeftOnHoverListener);
+         return inflate;
+     }
+
+***
 ## 地址栏
 ```
     //更新地址栏按钮内容，切割并格式化路径存入按钮内容集合
