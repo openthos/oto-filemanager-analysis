@@ -283,5 +283,41 @@ Uri mUri = Uri.parse("content://com.openthos.filemanager/recycle");
         }
     }
 ***
-## 文件预览
+## 文件预览  
+```
+    //加载图标，如果缓存有从缓存取，没有则开启子线程加载缩略图，没有缩略图根据文件类型使用默认图标
+    public void loadDrawable(ImageView iconView, String filePath) {
+        if (mAppIcons.containsKey(filePath)) {
+            iconView.setImageDrawable(mAppIcons.get(filePath));
+            thumbnailBackground(iconView, filePath);
+            return;
+        }
+
+        if (mWorkerThread == null) {
+            mWorkerThread = new HandlerThread("IconHolderLoader");
+            mWorkerThread.start();
+            mWorkerHandler = new WorkerHandler(mWorkerThread.getLooper());
+        }
+        Loadable previousForView = mRequests.get(iconView);
+        if (previousForView != null) {
+            mWorkerHandler.removeMessages(MSG_LOAD, previousForView);
+        }
+
+        Loadable loadable = new Loadable(mContext, iconView, filePath);
+        mRequests.put(iconView, loadable);
+        iconView.setImageDrawable(getDrawable(filePath));
+
+        mWorkerHandler.obtainMessage(MSG_LOAD, loadable).sendToTarget();
+    }
+    
+    //加载图片缩略图的方法，视频类似
+    private Drawable getImageDrawable(String file) {
+        Bitmap thumb = ThumbnailUtils.createImageThumbnail(file,
+            ThumbnailUtils.TARGET_SIZE_MICRO_THUMBNAIL);
+        if (thumb == null) {
+            return null;
+        }
+        return new BitmapDrawable(context.getResources(), thumb);
+    }
+```
 ## 快捷键
