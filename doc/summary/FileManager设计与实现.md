@@ -254,5 +254,59 @@ Uri mUri = Uri.parse("content://com.openthos.filemanager/recycle");
 ```
 
 ## 文件监听
+***
+    //文件监听主要是使用FileObserver类。这里采用的是对单个目录进行的监听，即文件管理器每到一个目录，就对当前目录监听
+    class CustomFileObserver extends FileObserver {
+        public CustomFileObserver(String path) {
+             super(path);
+         }
+
+         @Override
+         public void onEvent(int event, String path) {
+             final int action = event & FileObserver.ALL_EVENTS;
+             switch (action) {
+                 case FileObserver.CREATE:
+                 case FileObserver.DELETE:
+                 case FileObserver.MOVED_FROM:
+                 case FileObserver.MOVED_TO:
+                 case FileObserver.MODIFY:
+                     mHandler.sendMessage(Message.obtain(mHandler, Constants.ONLY_REFRESH,
+                                        ((BaseFragment) getVisibleFragment())
+                                                       .mFileViewInteractionHub.getCurrentPath()));
+                     break;
+                 default:
+                     break;
+             }
+        }
+    }
+
+    //对mEt_nivagation监听，这个text上的字符串就是当前文件所在的目录
+    private class TextChangeListener implements TextWatcher {
+        @Override
+         public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) {
+ 
+         }
+ 
+         @Override
+         public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+ 
+        }
+ 
+        @Override
+        public void afterTextChanged(Editable editable) {
+            String sdfolder = getResources().getString(R.string.path_sd_eng);
+            String path = editable.toString();
+            if (path.startsWith(sdfolder)) {
+                path = Constants.ROOT_PATH + path.substring(1, path.length());
+            }
+            if (mCustomFileObserver != null) {
+                mCustomFileObserver.stopWatching();
+                mCustomFileObserver = null;
+            }
+            mCustomFileObserver = new CustomFileObserver(path);
+            mCustomFileObserver.startWatching();
+        }
+    }
+***
 ## 文件预览
 ## 快捷键
