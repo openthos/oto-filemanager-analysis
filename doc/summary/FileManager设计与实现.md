@@ -320,4 +320,9 @@ Uri mUri = Uri.parse("content://com.openthos.filemanager/recycle");
         return new BitmapDrawable(context.getResources(), thumb);
     }
 ```
-## 快捷键
+## 快捷键, 主要代码在MainActivity的onKeyDown方法中
+```
+     @Override
+     public boolean onKeyDown(int keyCode, KeyEvent event) {
+     }
+```
