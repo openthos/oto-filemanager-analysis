@@ -1,0 +1,120 @@
+功能：让局域网内其他设备来访问本机，将本机设备共享出去
+
+使用的samba软件包版本为4.5.1
+
+smb.conf简单配置:
+1.匿名访问
+[global]
+workgroup  = WORKGROUP    //如果需要跟windows交互，工作组建议设置为WORKGROUP
+public = yes
+security = user    //定义安全级别为user
+map to guest = bad user    //如使用不存在的用户登录,映射为guest用户;如使用正确的用户而密码错误,则禁止连接
+server string = Samba Server    //对Samba Server的描述
+server role = standalone server    //独立服务器
+[share]    //自定义共享名
+comment = share    //描述
+path = /storage/emulated/legacy/Pictures/wallpaper    //共享目录路径
+public = yes    //是否公开，也就是通过网上邻居客户端能看到该共享
+writable = yes    //是否可写
+browseable = yes    //是否可以浏览
+guest ok = yes    //是否允许来宾用户访问
+
+2.用户密码访问
+[global]
+workgroup  = WORKGROUP
+public = yes
+server string = Samba Server
+server role = standalone server
+[share]
+comment = share
+path = /storage/emulated/legacy/Pictures/wallpaper
+public = yes
+writable = yes
+browseable = yes
+
+3.添加用户
+smbpasswd -a 用户名
+
+4.更改密码
+smbpasswd 用户名
+
+以下列举移植过程中遇到的一些问题:
+1.压缩包的问题
+app的assets资产目录，只能放zip类型的压缩包，而zip包不会保存文件的权限，所以会导致一些权限问题，需要使用chmod去手动添加相应的权限
+
+2.匿名共享问题
+报错：Ignoring invalid value 'share' for parameter 'security'
+从samba3版本开始：security不再支持share模式
+原先samba3版本只需要设置security = share即可使用匿名共享
+现在要想使用匿名共享，需要设置为:
+security　=　user
+map to guest =　bad User
+
+共享目录路径问题
+android5.1版本，su -c 状态下，能识别/storage/emulated/legacy/，但不能识别/storage/emulated/0/，虽然二者指向相同，/0/目录是给user权限访问的，/emulated/目录是给root权限访问的，app正常返回的是user权限的目录，而samba执行时用的是root权限
+解决方案有两种：一是降低samba的执行权限；二是使用字符串替换的方式，把路径替换为正确的，目前采取的是第二种方案
+
+samba共享目录只能显示一个文件的问题
+samba调试时，出现共享目录只能显示一个文件而其他存在的文件不可见的问题。
+寻求熟悉底层的同事协助，gdb调试发现，移植时这一步操作是由seekdir(), telldir()处理的，而在Android5.1平台下没有这两个api，提供如下PATCH修复此问题。
+
+--- a/source3/modules/vfs_default.c
++++ b/source3/modules/vfs_default.c
+@@ -452,10 +452,15 @@ static NTSTATUS vfswrap_readdir_attr(struct vfs_handle_struct *handle,
+        return NT_STATUS_NOT_SUPPORTED;
+ }
+ 
++struct DIR {
++         int fd_;
++};
++
+ static void vfswrap_seekdir(vfs_handle_struct *handle, DIR *dirp, long offset)
+ {
+        START_PROFILE(syscall_seekdir);
+-       seekdir(dirp, offset);
++       (void) lseek(dirp->fd_, offset, SEEK_SET);
++       DEBUG(0, ("seekdir() called!\n"));
+        END_PROFILE(syscall_seekdir);
+ }
+ 
+@@ -463,7 +468,8 @@ static long vfswrap_telldir(vfs_handle_struct *handle, DIR *dirp)
+ {
+        long result;
+        START_PROFILE(syscall_telldir);
+-       result = telldir(dirp);
++       result = (long) lseek(dirp->fd_, 0, SEEK_CUR);
++       DEBUG(0, ("telldir() called!\n"));
+        END_PROFILE(syscall_telldir);
+        return result;
+ }
+
+
+开机恢复samba服务端工作状态问题
+samba服务端进程是底层进程，并非android上层服务，无法通过安卓api来获取开启与关闭的状态；
+解决办法：samba服务运行的时候，会在samba/var/run/目录下生成名为smbd.pid的临时文件；samba服务正常停止的时候会自动删除该临时文件；samba开启状态下，如果非正常关闭，比如关机/重启，临时文件依然存在；所以接收到开机广播后，检查samba运行时的临时文件是否存在，如存在，则自启，不存在，则跳过
+
+更改共享配置需要重启进程的问题
+以上的简单配置可以实现文件目录的共享，但是存在弊端，每次更改配置的时候需要对smb.conf配置进行重新写入，并重启服务端进程；但是根据linux环境下，samba服务端的表现形式来看，每次更改配置时，服务端进程并不会重启；
+进一步调研，发现可以使用 net usershare 来动态设置共享目录：
+1.创建samba/usershares目录，赋予相应权限
+2. [global]中添加如下配置信息：
+usershare path = /data/data/samba/usershares    //path为usershares的绝对路径
+usershare max shares = 10
+usershare allow guests = yes
+usershare owner only = yes
+3.重启samba服务端进程即可使用usershares进行动态配置了
+动态添加共享
+net usershare add share /storage/emulated/legacy/Pictures "public share" everyone:r guest_ok=y
+share是共享名，/storage/emulated/legacy/Pictures是要共享的目录，"public share"是公开可见，everyone:r是给予只读权限，guest_ok=y是允许匿名访问
+动态删除共享
+net usershare delete share
+列出本机上所有共享
+net usershare list
+查看共享信息
+net usershare info share
+
+不尽之处可以参考Samba (简体中文)官方文档
+https://wiki.archlinux.org/index.php/Samba_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
+
+
+
