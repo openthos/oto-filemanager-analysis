@@ -7,9 +7,9 @@
 # 使用流程
  - 首次配置：默认服务器为http://dev.openthos.org/  
    登录：不同服务器的账号不可通用；
-   ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/java_structure_1.png)  
+   ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/setup_login.jpg)  
    注册：已在其他服务器注册过得ID和邮箱不可再用,邮箱可是无效的但格式要正确；  
-   ![image]() 
+   ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/setup_registe.jpg) 
    
  － 设置  
    系统账户管理：登录后openthos ID会显示账号；openthos服务器点击可修改服务器；
