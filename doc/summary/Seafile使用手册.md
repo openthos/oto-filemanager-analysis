@@ -16,7 +16,7 @@
    ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/set_change_server.jpg) 
    点击openthos ID可注册、绑定和解绑账号；
    ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/set_id.jpg) 
-   云服务：选定数据后,点击备份将数据上传到服务器,点击回复将本地同步下来的数据应用到本机；
+   云服务：选定数据后,点击备份将数据上传到服务器,并覆盖服务器中原备份数据；点击恢复将本地已同步下来的数据应用到本机,会覆盖本机原有数据；
    ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/set_seafile.jpg)
    
  － 文件管理器：绑定账号后打开文件管理器,点击左侧云服务,显示用户DATA资料库,右键可同步与解除同步；  
