@@ -13,11 +13,12 @@
    
  － 设置  
    系统账户管理：登录后openthos ID会显示账号；openthos服务器点击可修改服务器；
-   ![image]() 
+   ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/set_change_server.jpg) 
    点击openthos ID可注册、绑定和解绑账号；
-   ![image]() 
+   ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/set_id.jpg) 
    云服务：选定数据后,点击备份将数据上传到服务器,点击回复将本地同步下来的数据应用到本机；
-   ![image]()
+   ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/set_seafile.jpg)
    
- － 文件管理器：绑定账号后打开文件管理器,点击左侧云服务,显示用户DATA资料库,右键可同步与解除同步；
-   
+ － 文件管理器：绑定账号后打开文件管理器,点击左侧云服务,显示用户DATA资料库,右键可同步与解除同步；  
+   ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/fm_data.jpg)  
+   设置按钮查看云服务信息
