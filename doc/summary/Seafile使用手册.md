@@ -21,4 +21,6 @@
    
  － 文件管理器：绑定账号后打开文件管理器,点击左侧云服务,显示用户DATA资料库,右键可同步与解除同步；  
    ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/fm_data.jpg)  
-   设置按钮查看云服务信息
+   设置按钮查看云服务信息,可同步和解除同步；
+   ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/fm_info1.jpg)  
+   ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/fm_info2.jpg)  
