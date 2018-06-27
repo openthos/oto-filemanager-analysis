@@ -7,5 +7,17 @@
 # 使用流程
  - 首次配置：默认服务器为http://dev.openthos.org/  
    登录：不同服务器的账号不可通用；
-   ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/java_structure_1.png)
-   注册：已在其他服务器注册过得ID和邮箱不可再用,邮箱可是无效的但格式要正确；
+   ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/java_structure_1.png)  
+   注册：已在其他服务器注册过得ID和邮箱不可再用,邮箱可是无效的但格式要正确；  
+   ![image]() 
+   
+ － 设置  
+   系统账户管理：登录后openthos ID会显示账号；openthos服务器点击可修改服务器；
+   ![image]() 
+   点击openthos ID可注册、绑定和解绑账号；
+   ![image]() 
+   云服务：选定数据后,点击备份将数据上传到服务器,点击回复将本地同步下来的数据应用到本机；
+   ![image]()
+   
+ － 文件管理器：绑定账号后打开文件管理器,点击左侧云服务,显示用户DATA资料库,右键可同步与解除同步；
+   
