@@ -14,7 +14,8 @@
  － 设置  
    系统账户管理：登录后openthos ID会显示账号；openthos服务器点击可修改服务器；
    ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/set_change_server.jpg) 
-   点击openthos ID可注册、绑定和解绑账号；
+   点击openthos ID可注册、绑定和解绑账号；  
+   注册id不可是邮箱格式，注册邮箱必须是邮箱格式，可以是无效邮箱，例如text@126.com、test@123.com;
    ![image](https://github.com/openthos/oto-filemanager-analysis/blob/master/doc/summary/pictures/set_id.jpg) 
    云服务：选定数据后,点击备份将数据上传到服务器,并覆盖服务器中原备份数据；点击恢复将本地已同步下来的数据应用到本机,会覆盖本机原有数据；  
    壁纸：备份恢复用户自定义桌面壁纸；  
