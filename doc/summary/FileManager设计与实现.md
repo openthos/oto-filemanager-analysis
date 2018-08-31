@@ -105,10 +105,10 @@ USB设备卸载与格式化目前上是参考Settings存储页面做的，思路
   - src/org/openthos/filemanager/system/FileOperationHelper.java
   - src/org/openthos/filemanager/system/FileViewInteractionHub.java
 
-#Samba Server
+# Samba Server
 用于将本机设备共享出去，让局域网内其他设备来访问本机
 
-##实现流程
+## 实现流程
 ###开启/关闭Samba Server进程
 
 发起调用：OtoFileManager-->PopOnClickLintener.java的onClick()，由pop_share_toggle开关控制
@@ -127,7 +127,7 @@ openthos封装后的脚本调用
     /data/data/samba/samba.sh stop-------------------------关闭
     /data/data/samba/samba.sh restart----------------------重启
     
-###共享文件目录
+### 共享文件目录
 
 发起调用：OtoFileManager-->MenuDialog.java的onItemClick()
 
@@ -172,11 +172,11 @@ writable = yes
 browseable = yes
 ```
 
-###用户管理
+### 用户管理
 
 包含用户列表、添加用户、删除用户、修改密码
 
-####用户列表
+#### 用户列表
 
 发起调用：UserManagementDialog.java中
 
@@ -192,7 +192,7 @@ openthos封装后的脚本调用
 
 
 
-####添加用户
+#### 添加用户
 
 发起调用：在AddUsersDialog.java中
 
@@ -206,7 +206,7 @@ openthos封装后的脚本调用
 
     /data/data/samba/smbpasswd.sh" + " " + 用户名 + " " + 密码
     
-####删除用户
+#### 删除用户
 
 发起调用：在UserManagementDialog.java中
 
@@ -220,7 +220,7 @@ openthos封装后的脚本调用
 
     data/data/samba/pdbedit.sh" + " -x " +  用户名
     
-####修改密码
+#### 修改密码
 
 发起调用：在UserManagementDialog.java中
 
@@ -234,16 +234,16 @@ openthos封装后的脚本调用
 
     /data/data/samba/smbpasswd.sh" + " " + 用户名 + " " + 密码
     
-#Seafile other library 
+# Seafile other library 
 需求原因：原先OtoFileManager(文件管理器)上已经集成了OtoCloudService(云服务)的部分功能，以命令行的形式实现了本地与服务器DATA资料库的同步，为了改善用户体验，满足多样化需求，需要增加其他资源库的支持。
 
-##整体思路
+## 整体思路
 使用纯java代码的形式实现其他资料库的支持，方便二次开发与后期维护。另外，因android依赖库的jar包在跨版本(如5.1与8.1)使用时，兼容性难以满足，故而采用放置依赖库源码的方式。
 
-##代码位置
+## 代码位置
 在packages/apps/OtoCloudService/src/org/openthos/seafile/seaapp下
 
-##主要的类
+## 主要的类
 SeafileActivity.java------------------------------------------界面处理，消息处理，数据加载与展示
 
 GenericListener.java----------------------------------------单击、双击、右键等各类点击事件的处理
@@ -282,7 +282,7 @@ MeunDialog.java-----------------------------------------右键菜单
 
 NavContext.java-------------------------------------------网络路径信息的bean类
 
-##主要的内部类及方法
+## 主要的内部类及方法
 SeafileActivity-->getAccountAndLogin()-------------------------------获取帐户相关信息并加载其他资料库进行展示的方法
 
     public void getAccountAndLogin() {
